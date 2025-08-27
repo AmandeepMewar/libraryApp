@@ -1,0 +1,15 @@
+spring.application.name=libraryapp
+
+# JDBC Properties
+spring.datasource.url=<url>
+spring.datasource.username=<username>
+spring.datasource.password=<password>
+
+# Simple Spring Properties
+#spring.security.user.name=<username>
+#spring.security.user.password=<password>
+
+logging.level.org.springframework.security=DEBUG
+
+# Spring Data REST Properties
+server.servlet.context-path=/api/v1
