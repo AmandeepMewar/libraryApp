@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Users - My Digital Library</title>
+    <link rel="stylesheet" th:href="@{/css/users.css}"/>
+
 </head>
 <body>
+
+<header>
+    <h2 class="logo">My Digital Library</h2>
+
+    <nav class="navbar">
+        <li>
+            <form action="#" th:action="@{/logout}" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+    </nav>
+</header>
+
+<section class="table-container">
+
+    <table>
+        <thead>
+        <tr>
+            <th>user id</th>
+            <th>username</th>
+<!--            <th>password</th>-->
+            <th>role</th>
+            <th>email</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.userId}"/>
+            <td th:text="${user.username}" />
+<!--            <td th:text="${user.password}"/>-->
+            <td th:text="${user.role}"/>
+            <td th:text="${user.email}"/>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<a th:href="@{/}">Back to Home Page</a>
 
 </body>
 </html>

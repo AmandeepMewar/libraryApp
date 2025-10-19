@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Books - Digital Library</title>
+    <title>Searched - Digital Library</title>
+    <link rel="stylesheet" th:href="@{/css/books.css}"/>
 </head>
 <body>
     <header>
@@ -11,44 +12,31 @@
         <nav class="navbar">
             <li>
                 <form action="#" th:action="@{/logout}" method="POST">
-                    <input type="submit" value="Logout" />
+                    <button type="submit" value="Logout" />
                 </form>
             </li>
         </nav>
     </header>
 
-    <section>
+    <section class="book-container">
 
-        <table>
-            <thead>
-            <tr>
-                <th>book id</th>
-                <th>title</th>
-                <th>author</th>
-                <th>publisher</th>
-                <th>category</th>
-            </tr>
-            </thead>
+        <h4>Searched For: <span th:text="${title}"></span></h4>
 
-            <tbody>2
-<!--                <tr th:each="tempBook : ${books}">-->
-<!--                    <td th:text="${tempBook.bookId}" />-->
-<!--                    <td th:text="${tempBook.title}" />-->
-<!--                    <td th:text="${tempBook.author}" />-->
-<!--                    <td th:text="${tempBook.publisher}" />-->
-<!--                    <td th:text="${tempBook.category}" />-->
-<!--                </tr>-->
+        <div class="book-info">
 
-            <tr >
-                <td th:text="${book.bookId}" />
-                <td th:text="${book.title}" />
-                <td th:text="${book.author}" />
-                <td th:text="${book.publisher}" />
-                <td th:text="${book.category}" />
-            </tr>
-            </tbody>
-        </table>
+            <p>Book id: <span th:text="${book.bookId}"/></p>
+            <p>Title: <span th:text="${book.title}"/></p>
+            <p>Author: <span th:text="${book.author}"/></p>
+            <p>Publisher: <span th:text="${book.publisher}"/></p>
+            <p>ISBN: <span th:text="${book.isbn}"/></p>
+            <p>Category: <span th:text="${book.category}"/></p>
+            <p>Total Copies: <span th:text="${book.totalCopies}"/></p>
+            <p>Available Copies: <span th:text="${book.availableCopies}"/></p>
+
+        </div>
     </section>
+
+    <a th:href="@{/}">Back to Home Page</a>
 
 </body>
 </html>

@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BookList - Digital Library</title>
+    <link rel="stylesheet" th:href="@{/css/books.css}"/>
 </head>
 <body>
+    <header>
+        <h2 class="logo">My Digital Library</h2>
+
+        <nav class="navbar">
+            <li>
+                <form action="#" th:action="@{/logout}" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </nav>
+    </header>
+
+    <section class="table-container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>book id</th>
+                    <th>title</th>
+                    <th>author</th>
+                    <th>isbn</th>
+                    <th>publisher</th>
+                    <th>category</th>
+                    <th>total Copies</th>
+                    <th>available copies</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.bookId}"/>
+                    <td th:text="${book.title}" />
+                    <td th:text="${book.author}"/>
+                    <td th:text="${book.isbn}"/>
+                    <td th:text="${book.publisher}"/>
+                    <td th:text="${book.category}"/>
+                    <td th:text="${book.totalCopies}">
+                    <td th:text="${book.availableCopies}">
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <a th:href="@{/}">Back to Home Page</a>
 
 </body>
 </html>

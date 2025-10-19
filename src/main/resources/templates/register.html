@@ -12,15 +12,7 @@
 
     <section class="login-container">
         <form action="#" method="POST" th:action="@{/authenticateTheUser}" class="login-form">
-            <h2 class="">Login</h2>
-
-            <div th:if="${param.error}">
-                <p class="invalid-error">Invalid username and password</p>
-            </div>
-
-            <div th:if="${param.logout}">
-                <p class="logout">User have been logged out.</p>
-            </div>
+            <h2 class="">Register</h2>
 
             <div>
                 <input class="input-box" name="username" type="text" placeholder="Enter username..."/>
@@ -35,8 +27,11 @@
             </div>
 
             <div>
-                <button type="submit" class="loginBtn">Login</button>
+                <button type="submit" class="loginBtn">Sign up</button>
             </div>
+
+            <p>Already a user?  <a th:href="@{/login}" class="blue">Sign up.</a></p>
+
         </form>
     </section>
 

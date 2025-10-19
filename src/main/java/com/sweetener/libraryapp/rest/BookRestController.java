@@ -3,15 +3,13 @@ package com.sweetener.libraryapp.rest;
 import com.sweetener.libraryapp.entity.Book;
 import com.sweetener.libraryapp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class BookRestController  {
+@RequestMapping("/api/v1")
+public class BookRestController {
 
     private BookService bookService;
 
@@ -34,4 +32,26 @@ public class BookRestController  {
     public Book deleteByTitle(@PathVariable String title) {
         return bookService.deleteByTitle(title);
     }
+//
+//    @PatchMapping("/books/{bookId}")
+//    public Book pathBook(@PathVariable int bookId,
+//                         @RequestBody Map<String, Object> patchPayload) {
+//        Book tempBook = bookService.findById(bookId);
+//
+//        // throw exception if null
+//        if (tempBook == null) {
+//            throw new RuntimeException("Employee id not found - " + bookId);
+//        }
+//
+//        // throw exception if request body contains "id" key
+//        if (patchPayload.containsKey("book_id")) {
+//            throw new RuntimeException("Book id not allowed in request body - " + bookId);
+//        }
+//
+//        Book patchedBook = apply(patchPayload, tempBook);
+//
+//        Book dbBook = bookService.save(patchedBook);
+//
+//        return dbBook;
+//    }
 }

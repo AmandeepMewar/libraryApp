@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Digital Library - Home</title>
@@ -10,9 +10,19 @@
         <h2 class="logo">My Digital Library</h2>
 
         <nav class="navbar">
+            <li sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/userlist}">
+                    Users
+                </a>
+            </li>
+            <li sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/booklist}">
+                    Books
+                </a>
+            </li>
             <li>
-                <form action="#" th:action="@{/logout}" method="POST">
-                    <input type="submit" value="Logout" />
+                <form action="#" th:action="@{/logout}" method="GET">
+                    <button type="submit">Logout</button>
                 </form>
             </li>
         </nav>
@@ -22,12 +32,15 @@
 
         <h3 class="heading">Welcome to My Digital Library!! Search a book you'd like to read...</h3>
 
-        <form action="#">
+        <form action="#" method="GET" th:action="@{/book}">
             <div>
-                <input type="text" class="input-box" placeholder="de profundis or something else...?"/>
+                <input type="text" name="title" th:value="${title}" class="input-box" placeholder="de profundis or something else...?"/>
             </div>
         </form>
     </section>
+
+
+
 
 </body>
 </html>

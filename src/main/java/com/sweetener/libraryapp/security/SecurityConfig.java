@@ -1,5 +1,6 @@
 package com.sweetener.libraryapp.security;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -35,14 +36,23 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.POST, "/api/v1/books").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users").hasRole("STUDENT")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/books").hasAnyRole("ADMIN", "STUDENT", "LIBRARIAN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/books").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/books").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users").hasRole("ADMIN")
-                        .anyRequest().authenticated() // 👈 don’t forget this
+                        .requestMatchers(HttpMethod.POST, "/books").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/users").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/books").hasAnyAuthority("ADMIN", "STUDENT", "LIBRARIAN")
+                        .requestMatchers(HttpMethod.GET, "/users").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/books").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/books").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/users").hasAuthority("ADMIN")
+                        .requestMatchers("/register").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .anyRequest().authenticated()
+        ).formLogin(form ->
+                form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/authenticateTheUser")
+                        .permitAll()
+        ).logout(
+                logout -> logout.permitAll()
         );
 
         http.httpBasic(Customizer.withDefaults());
