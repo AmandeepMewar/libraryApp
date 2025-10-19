@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books - Digital Library</title>
+</head>
+<body>
+    <header>
+        <h2 class="logo">My Digital Library</h2>
+
+        <nav class="navbar">
+            <li>
+                <form action="#" th:action="@{/logout}" method="POST">
+                    <input type="submit" value="Logout" />
+                </form>
+            </li>
+        </nav>
+    </header>
+
+    <section>
+
+        <table>
+            <thead>
+            <tr>
+                <th>book id</th>
+                <th>title</th>
+                <th>author</th>
+                <th>publisher</th>
+                <th>category</th>
+            </tr>
+            </thead>
+
+            <tbody>2
+<!--                <tr th:each="tempBook : ${books}">-->
+<!--                    <td th:text="${tempBook.bookId}" />-->
+<!--                    <td th:text="${tempBook.title}" />-->
+<!--                    <td th:text="${tempBook.author}" />-->
+<!--                    <td th:text="${tempBook.publisher}" />-->
+<!--                    <td th:text="${tempBook.category}" />-->
+<!--                </tr>-->
+
+            <tr >
+                <td th:text="${book.bookId}" />
+                <td th:text="${book.title}" />
+                <td th:text="${book.author}" />
+                <td th:text="${book.publisher}" />
+                <td th:text="${book.category}" />
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>

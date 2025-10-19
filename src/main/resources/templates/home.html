@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Library - Home</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+</head>
+<body>
+    <header>
+        <h2 class="logo">My Digital Library</h2>
+
+        <nav class="navbar">
+            <li>
+                <form action="#" th:action="@{/logout}" method="POST">
+                    <input type="submit" value="Logout" />
+                </form>
+            </li>
+        </nav>
+    </header>
+
+    <section class="main-container">
+
+        <h3 class="heading">Welcome to My Digital Library!! Search a book you'd like to read...</h3>
+
+        <form action="#">
+            <div>
+                <input type="text" class="input-box" placeholder="de profundis or something else...?"/>
+            </div>
+        </form>
+    </section>
+
+</body>
+</html>
