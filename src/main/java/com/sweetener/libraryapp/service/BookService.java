@@ -15,4 +15,6 @@ public interface BookService {
     Book save(Book theBook);
 
     Book deleteByTitle(String title);
+
+    void deleteById(int theId);
 }

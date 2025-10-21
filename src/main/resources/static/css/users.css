@@ -39,7 +39,7 @@ body {
 
 .navbar {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     justify-content: center;
     align-items: center;
     padding: 2rem 4rem;
@@ -75,9 +75,15 @@ th, td {
 
 .table-container {
     display: flex;
-    margin-top: 5rem;
+    flex-direction: column;
+    margin: 4rem 0 7rem 0;
     justify-content: center;
     align-items: center;
+}
+
+.heading {
+    font-size: 2.6rem;
+    margin-bottom: 2rem;
 }
 
 .book-container {
@@ -102,4 +108,40 @@ th, td {
 
 .book-info span {
     font-weight: normal;
+}
+
+.user-info {
+    display: flex;
+    gap: 1rem;
+    font-size: 2.2rem;
+    text-transform: capitalize;
+}
+
+.user-img {
+    width: 2.5rem;
+    border-radius: 2.2rem;
+}
+
+.last {
+    margin-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: end;
+}
+
+.logout {
+    background-color: #27988C;
+    padding: .6rem 1.6rem;
+    border-radius: 2rem;
+}
+
+.back {
+    background-color: #27988C;
+    padding: .6rem 1.6rem;
+    border-radius: 2rem;
+    color: white;
+    position: fixed;
+    bottom: 3rem;
+    left: 2rem;
 }

@@ -5,6 +5,8 @@ import com.sweetener.libraryapp.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -37,6 +39,31 @@ public class bookController {
         theModel.addAttribute("books", theBooks);
 
         return "booklist";
+    }
+
+    @GetMapping("/updateBook")
+    public String updateBook(@RequestParam("bookId") int theId, Model theModel) {
+
+        Book theBook = bookService.findById(theId);
+
+        theModel.addAttribute("book", theBook);
+
+        return "updateBook";
+    }
+
+    @GetMapping("/deleteBook")
+    public String deleteBook(@RequestParam("bookId") int theId) {
+        bookService.deleteById(theId);
+
+        return "redirect:/booklist";
+    }
+
+    @PostMapping("/saveBook")
+    public String saveBook(@ModelAttribute("book") Book theBook) {
+
+        bookService.save(theBook);
+
+        return "redirect:/booklist";
     }
 }
 

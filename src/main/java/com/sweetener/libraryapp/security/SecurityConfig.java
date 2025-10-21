@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -43,7 +45,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/books").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/books").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAuthority("ADMIN")
-                        .requestMatchers("/register").permitAll()
+                        .requestMatchers("/register", "/save").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .anyRequest().authenticated()
         ).formLogin(form ->
@@ -61,4 +63,10 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
 }

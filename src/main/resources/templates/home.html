@@ -20,10 +20,14 @@
                     Books
                 </a>
             </li>
-            <li>
-                <form action="#" th:action="@{/logout}" method="GET">
-                    <button type="submit">Logout</button>
-                </form>
+            <li class="last">
+                    <div class="user-info">
+                        <img th:src="@{/images/user.jpg}" class="user-img"/>
+                        <p sec:authentication="principal.username"></p>
+                    </div>
+                    <form action="#" th:action="@{/logout}" method="GET">
+                        <button type="submit" class="logout">Logout</button>
+                    </form>
             </li>
         </nav>
     </header>

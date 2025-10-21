@@ -57,45 +57,6 @@ header {
     padding: 2rem;
 }
 
-table, td, th {
-    border: 2px solid black;
-    border-collapse: collapse;
-}
-
-th {
-    text-transform: capitalize;
-}
-
-td {
-    font-size: 1.2rem;
-}
-
-th, td {
-    padding: 1rem;
-}
-
-.table-container {
-    display: flex;
-    flex-direction: column;
-    margin: 4rem 0 7rem 0;
-    justify-content: center;
-    align-items: center;
-}
-
-.heading {
-    font-size: 2.6rem;
-    margin-bottom: 2rem;
-}
-
-.book-container {
-    padding: 5rem;
-    font-size: 1.4rem;
-}
-
-.book-container h4 {
-    font-size: 2.2rem;
-}
-
 .book-info {
     padding: 1.4rem;
     display:flex;
@@ -137,23 +98,43 @@ th, td {
     border-radius: 2rem;
 }
 
-.back {
-    background-color: #27988C;
-    padding: .6rem 1.6rem;
-    border-radius: 2rem;
-    color: white;
-    position: fixed;
-    bottom: 3rem;
-    left: 2rem;
+.main-container {
+     display: flex;
+     flex-direction: column;
+     margin: 4rem 0 7rem 0;
+     justify-content: center;
+     align-items: center;
 }
 
-.edit-btn{
-    background-color: #27988C;
-    padding: .6rem 1.6rem;
-    border-radius: 2rem;
-    color: white;
+.update-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid black;
+    padding: 5rem 5rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    font-size: 1.8rem;
 }
 
-.delete {
-    background-color: red;
+.input-box {
+    width: 40rem;
+    padding: 1rem;
+    border-bottom: 1px solid black;
+}
+
+
+.inputBox:first-child {
+    margin-top: 1rem;
+}
+
+.updateBtn {
+    width: 30rem;
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #17807D;
+    color: white;
 }

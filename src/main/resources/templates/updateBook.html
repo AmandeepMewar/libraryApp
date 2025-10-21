@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/updateBook.css}"/>
+</head>
+<body>
+<header>
+    <h2 class="logo">My Digital Library</h2>
+
+    <nav class="navbar">
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/userlist}">
+                Users
+            </a>
+        </li>
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/booklist}">
+                Books
+            </a>
+        </li>
+        <li class="last">
+            <div class="user-info">
+                <img th:src="@{/images/user.jpg}" class="user-img"/>
+                <p sec:authentication="principal.username"></p>
+            </div>
+            <form action="#" th:action="@{/logout}" method="GET">
+                <button type="submit" class="logout">Logout</button>
+            </form>
+        </li>
+    </nav>
+</header>
+
+<section class="main-container">
+
+    <form class="update-form" action="#" method="POST" th:action="@{/saveBook}" th:object="${book}">
+        <h2>Update Book</h2>
+
+        <input type="hidden" />
+
+        <div>
+            <input class="input-box" name="bookId" th:field="*{bookId}" type="number" placeholder="Enter bookId..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="title" th:field="*{title}" type="text" placeholder="Enter title..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="author" type="text" th:field="*{author}" placeholder="Enter author..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="publisher" type="text" th:field="*{publisher}" placeholder="Enter publisher..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="isbn" type="text" th:field="*{isbn}" placeholder="Enter isbn..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="category" type="text" th:field="*{category}" placeholder="Enter category..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="totalCopies" type="number" th:field="*{totalCopies}" placeholder="Enter total Copies..."/>
+        </div>
+
+        <div>
+            <input class="input-box" name="availableCopies" type="number" th:field="*{availableCopies}" placeholder="Enter available Copies..."/>
+        </div>
+
+        <div>
+            <button type="submit" class="updateBtn">Update</button>
+        </div>
+
+    </form>
+
+</section>
+</body>
+</html>

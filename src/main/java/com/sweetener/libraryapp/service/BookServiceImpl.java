@@ -66,4 +66,9 @@ public class BookServiceImpl implements BookService{
             throw new RuntimeException("Did not find Book title - " + title);
         }
     }
+
+    @Override
+    public void deleteById(int theId) {
+        bookRepository.deleteById(theId);
+    }
 }

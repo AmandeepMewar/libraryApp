@@ -11,26 +11,26 @@
 <div class="container">
 
     <section class="login-container">
-        <form action="#" method="POST" th:action="@{/authenticateTheUser}" class="login-form">
+        <form action="#" method="POST" class="login-form" th:object="${user}" th:action="@{/saveUser}">
             <h2 class="">Register</h2>
 
             <div>
-                <input class="input-box" name="username" type="text" placeholder="Enter username..."/>
+                <input class="input-box" th:field="*{username}" type="text" placeholder="Enter username..."/>
             </div>
 
             <div>
-                <input class="input-box" name="email" type="text" placeholder="Enter email..."/>
+                <input class="input-box" th:field="*{email}" type="text" placeholder="Enter email..."/>
             </div>
 
             <div>
-                <input class="input-box" name="password" type="password" placeholder="Enter password..."/>
+                <input class="input-box" th:field="*{password}" type="password" placeholder="Enter password..."/>
             </div>
 
             <div>
-                <button type="submit" class="loginBtn">Sign up</button>
+                <button type="submit" class="loginBtn">Register</button>
             </div>
 
-            <p>Already a user?  <a th:href="@{/login}" class="blue">Sign up.</a></p>
+            <p>Already a user?  <a th:href="@{/login}" class="blue">Login.</a></p>
 
         </form>
     </section>
