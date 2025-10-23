@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Searched - Digital Library</title>
+    <title>The Mid-World Library - Search bar</title>
     <link rel="stylesheet" th:href="@{/css/books.css}"/>
 </head>
 <body>
     <header>
-        <h2 class="logo">My Digital Library</h2>
+        <h2 class="logo">Mid-World Library</h2>
 
         <nav class="navbar">
-            <li>
-                <form action="#" th:action="@{/logout}" method="POST">
-                    <button type="submit" value="Logout" />
+            <li sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/userlist}">
+                    Users
+                </a>
+            </li>
+            <li sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/booklist}">
+                    Books
+                </a>
+            </li>
+            <li class="last">
+                <div class="user-info">
+                    <img th:src="@{/images/user.jpg}" class="user-img"/>
+                    <p sec:authentication="principal.username"></p>
+                </div>
+                <form action="#" th:action="@{/logout}" method="GET">
+                    <button type="submit" class="logout">Logout</button>
                 </form>
             </li>
         </nav>
@@ -22,21 +36,27 @@
 
         <h4>Searched For: <span th:text="${title}"></span></h4>
 
-        <div class="book-info">
+        <div class="book-info-box">
+            <div class="book-info">
 
-            <p>Book id: <span th:text="${book.bookId}"/></p>
-            <p>Title: <span th:text="${book.title}"/></p>
-            <p>Author: <span th:text="${book.author}"/></p>
-            <p>Publisher: <span th:text="${book.publisher}"/></p>
-            <p>ISBN: <span th:text="${book.isbn}"/></p>
-            <p>Category: <span th:text="${book.category}"/></p>
-            <p>Total Copies: <span th:text="${book.totalCopies}"/></p>
-            <p>Available Copies: <span th:text="${book.availableCopies}"/></p>
+                <p>Book id: <span th:text="${book.bookId}"/></p>
+                <p>Title: <span th:text="${book.title}"/></p>
+                <p>Author: <span th:text="${book.author}"/></p>
+                <p>Publisher: <span th:text="${book.publisher}"/></p>
+                <p>ISBN: <span th:text="${book.isbn}"/></p>
+                <p>Category: <span th:text="${book.category}"/></p>
+                <p>Total Copies: <span th:text="${book.totalCopies}"/></p>
+                <p>Available Copies: <span th:text="${book.availableCopies}"/></p>
 
+            </div>
+            <div>
+                <img th:src="@{/images/book.png}" class="book-img"/>
+            </div>
         </div>
+
     </section>
 
-    <a th:href="@{/}">Back to Home Page</a>
+    <a th:href="@{/}" class="back">Back to Home Page</a>
 
 </body>
 </html>

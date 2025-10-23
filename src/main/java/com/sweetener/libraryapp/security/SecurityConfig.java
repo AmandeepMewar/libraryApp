@@ -38,13 +38,17 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.POST, "/books").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/users").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/books").hasAnyAuthority("ADMIN", "STUDENT", "LIBRARIAN")
-                        .requestMatchers(HttpMethod.GET, "/users").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/books").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/books").hasAnyAuthority("ADMIN", "STUDENT", "LIBRARIAN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/books").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/books").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/users").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/books").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users").hasAuthority("ADMIN")
+                        .requestMatchers("/booklist/**").hasAuthority("ADMIN")
+                        .requestMatchers("/userlist/**").hasAuthority("ADMIN")
+                        .requestMatchers("/home/**").hasAnyAuthority("ADMIN", "STUDENT", "LIBRARIAN")
+                        .requestMatchers("/updateBook/**").hasAnyAuthority("ADMIN", "STUDENT", "LIBRARIAN")
                         .requestMatchers("/register", "/save").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .anyRequest().authenticated()
@@ -55,6 +59,8 @@ public class SecurityConfig {
                         .permitAll()
         ).logout(
                 logout -> logout.permitAll()
+        ).exceptionHandling(configurer ->
+                configurer.accessDeniedPage("/access-denied")
         );
 
         http.httpBasic(Customizer.withDefaults());

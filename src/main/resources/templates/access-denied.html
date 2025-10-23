@@ -2,9 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>The Mid-World Library - Users</title>
-    <link rel="stylesheet" th:href="@{/css/users.css}"/>
-
+    <title>The Mid-World Library - Access Denied</title>
+    <link rel="stylesheet" th:href="@{/css/books.css}"/>
 </head>
 <body>
 
@@ -34,34 +33,14 @@
     </nav>
 </header>
 
-<section class="table-container">
+<section class="container">
+    <img th:src="@{/images/denied.jpg}" class="denied"/>
+    <h2 class="heading-2">You are not authorized to access this resource!!</h2>
 
-    <h3 class="heading">User List</h3>
 
-    <table>
-        <thead>
-        <tr>
-            <th>user id</th>
-            <th>username</th>
-<!--            <th>password</th>-->
-            <th>role</th>
-            <th>email</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.userId}"/>
-            <td th:text="${user.username}" />
-<!--            <td th:text="${user.password}"/>-->
-            <td th:text="${user.role}"/>
-            <td th:text="${user.email}"/>
-        </tr>
-        </tbody>
-    </table>
+    <a th:href="@{/}" class="back">Back to Home Page</a>
 </section>
 
-<a th:href="@{/}" class="back">Back to Home Page</a>
 
 </body>
 </html>

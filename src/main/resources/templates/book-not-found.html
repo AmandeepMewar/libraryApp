@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>The Mid-World Library - Book Not Found</title>
+    <link rel="stylesheet" th:href="@{/css/books.css}"/>
+</head>
+<body>
+<header>
+    <h2 class="logo">Mid-World Library</h2>
+
+    <nav class="navbar">
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/userlist}">
+                Users
+            </a>
+        </li>
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/booklist}">
+                Books
+            </a>
+        </li>
+        <li class="last">
+            <div class="user-info">
+                <img th:src="@{/images/user.jpg}" class="user-img"/>
+                <p sec:authentication="principal.username"></p>
+            </div>
+            <form action="#" th:action="@{/logout}" method="GET">
+                <button type="submit" class="logout">Logout</button>
+            </form>
+        </li>
+    </nav>
+</header>
+
+    <section class="container">
+        <h2 th:text="${message}"></h2>
+
+        <a th:href="@{/booklist}" class="back">Back to Home page</a>
+    </section>
+
+</body>
+</html>

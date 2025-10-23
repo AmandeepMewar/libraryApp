@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/updateBook.css}"/>
+    <title>The Mid-World Library - Book Form</title>
+    <link rel="stylesheet" th:href="@{/css/bookform.css}"/>
 </head>
 <body>
 <header>
-    <h2 class="logo">My Digital Library</h2>
+    <h2 class="logo">Mid-World Library</h2>
 
     <nav class="navbar">
         <li sec:authorize="hasAuthority('ADMIN')">
@@ -35,13 +35,9 @@
 <section class="main-container">
 
     <form class="update-form" action="#" method="POST" th:action="@{/saveBook}" th:object="${book}">
-        <h2>Update Book</h2>
+        <h2>Book Form</h2>
 
-        <input type="hidden" />
-
-        <div>
-            <input class="input-box" name="bookId" th:field="*{bookId}" type="number" placeholder="Enter bookId..."/>
-        </div>
+        <input type="hidden" th:field="*{bookId}" />
 
         <div>
             <input class="input-box" name="title" th:field="*{title}" type="text" placeholder="Enter title..."/>
@@ -72,11 +68,15 @@
         </div>
 
         <div>
-            <button type="submit" class="updateBtn">Update</button>
+            <button type="submit" class="saveBtn">Save</button>
         </div>
 
     </form>
 
 </section>
+
+<div>
+    <a th:href="@{/}" class="back">Back to Home Page</a>
+</div>
 </body>
 </html>

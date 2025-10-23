@@ -110,4 +110,18 @@ public class Book {
     public void setTotalCopies(int totalCopies) {
         this.totalCopies = totalCopies;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", category='" + category + '\'' +
+                ", availableCopies=" + availableCopies +
+                ", totalCopies=" + totalCopies +
+                '}';
+    }
 }

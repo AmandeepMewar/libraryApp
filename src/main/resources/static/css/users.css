@@ -50,6 +50,7 @@ header {
     display: flex;
     justify-content: space-between;
     color: white;
+    align-items: center;
 }
 
 .logo {
@@ -66,7 +67,7 @@ th {
 }
 
 td {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 th, td {

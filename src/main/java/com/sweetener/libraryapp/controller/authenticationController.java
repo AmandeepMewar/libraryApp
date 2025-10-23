@@ -43,4 +43,10 @@ public class authenticationController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/access-denied")
+    public String showAccessDenied() {
+
+        return "access-denied";
+    }
 }

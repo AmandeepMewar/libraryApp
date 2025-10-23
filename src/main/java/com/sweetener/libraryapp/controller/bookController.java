@@ -21,24 +21,41 @@ public class bookController {
     }
 
     @GetMapping("/book")
-    public String booklist(@RequestParam String title, Model theModel) {
+    public String searchBook(@RequestParam String title, Model theModel) {
 
-        Book theBooks = bookService.findByTitle(title);
+        Book theBook = bookService.findByTitle(title);
 
-        theModel.addAttribute("book", theBooks);
+        if (theBook == null) {
+            theModel.addAttribute("message", "No book found with title: \"" + title + "\"");
+            return "book-not-found";
+        }
+
+
+        theModel.addAttribute("book", theBook);
         theModel.addAttribute("title", '"' + title + '"');
 
         return "searchbook";
     }
 
     @GetMapping("/booklist")
-    public String booklist(Model theModel) {
+    public String bookList(Model theModel) {
 
         List<Book> theBooks = bookService.findAll();
 
         theModel.addAttribute("books", theBooks);
 
         return "booklist";
+    }
+
+
+    @GetMapping("/addBook")
+    public String addBook(Model theModel) {
+
+        Book theBook = new Book();
+
+        theModel.addAttribute("book", theBook);
+
+        return "bookform";
     }
 
     @GetMapping("/updateBook")
@@ -48,7 +65,7 @@ public class bookController {
 
         theModel.addAttribute("book", theBook);
 
-        return "updateBook";
+        return "bookform";
     }
 
     @GetMapping("/deleteBook")

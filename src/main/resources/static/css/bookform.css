@@ -13,6 +13,7 @@ html {
 input {
     outline: none;
     border: none;
+    background-color: inherit;
 }
 
 button {
@@ -50,6 +51,7 @@ header {
     display: flex;
     justify-content: space-between;
     color: white;
+    align-items: center;
 }
 
 .logo {
@@ -125,16 +127,26 @@ header {
 }
 
 
-.inputBox:first-child {
+.input-box:first-child {
     margin-top: 1rem;
 }
 
-.updateBtn {
-    width: 30rem;
+.saveBtn {
+    width: 40rem;
     padding: 1rem;
     cursor: pointer;
     margin-top: 1rem;
     text-align: center;
     background-color: #17807D;
     color: white;
+}
+
+.back {
+    background-color: #27988C;
+    padding: .6rem 1.6rem;
+    border-radius: 2rem;
+    color: white;
+    position: fixed;
+    bottom: 3rem;
+    left: 2rem;
 }

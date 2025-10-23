@@ -42,12 +42,7 @@ public class BookServiceImpl implements BookService{
 
         Book theBook = bookRepository.findByTitle(title);
 
-        if (theBook != null) {
-            return theBook;
-        } else {
-            throw new RuntimeException("Did not find Book title - " + title);
-        }
-
+        return theBook;
     }
 
     @Override
